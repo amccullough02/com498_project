@@ -1,33 +1,16 @@
-import java.util.Random;
-
 public class Card implements Comparable<Card> {
 
     public final int RANK, SUIT;
-    public String colour;
-    private static final Random GENERATOR = new Random();
 
     private static final String[] RANKS = {"2", "3", "4", "5", "6", "7", "8", "9",
                                             "10", "Jack", "Queen", "King", "Ace"};
 
-    private static final String[] SUITS = {"Clubs", "Diamonds", "Hearts", "Spades"};
+    private static final String[] SUITS = {"Diamonds", "Hearts", "Spades", "Clubs"};
 
-    public Card() {
+    public Card(int rank, int suit) {
 
-        RANK = GENERATOR.nextInt(RANKS.length);
-        SUIT = GENERATOR.nextInt(SUITS.length);
-
-        if (SUITS[SUIT]=="Clubs") {
-            colour = "black";
-        }
-        if (SUITS[SUIT]=="Diamonds") {
-            colour = "red";
-        }
-        if (SUITS[SUIT]=="Hearts") {
-            colour = "red";
-        }
-        if (SUITS[SUIT]=="Spades") {
-            colour = "black";
-        }
+        this.RANK = rank;
+        this.SUIT = suit;
 
     }
 
@@ -43,7 +26,9 @@ public class Card implements Comparable<Card> {
         return RANK;
     }
 
-    public String getColour() { return colour; }
+    public int getSuitValue() {
+        return SUIT;
+    }
 
     @Override
     public String toString() {

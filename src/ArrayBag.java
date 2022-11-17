@@ -133,7 +133,6 @@ public final class ArrayBag<T> implements BagInterface<T> {
         return strResult;
     }
 
-    // TODO create a method that returns an item - not the whole bag.
     public T returnElement(int index) {
 
         T[] resultArray = (T[]) new Object[numberOfEntries];
