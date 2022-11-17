@@ -18,7 +18,7 @@ public class Main {
                         "3. View high-score table\n" +
                         "4. Exit\n");
 
-        System.out.print("Input selection: ");
+        System.out.print("Input selection > ");
         input = sc.nextLine();
 
         switch(input) {
@@ -42,15 +42,25 @@ public class Main {
     }
 
     public static void singlePlayer() {
-        System.out.println("Single player game");
+
+        Scanner sc = new Scanner(System.in);
+        String input;
+        String name;
+
+        System.out.print("How many cards do you want to play with (5-10)? > ");
+        input = sc.nextLine();
+
+        System.out.print("Enter Player 1 Name > ");
+        name = sc.nextLine();
+
     }
 
     public static void twoPlayer() {
-        System.out.println("Two player game");
+        System.out.println("Two player game\n");
     }
 
     public static void highScore() {
-        System.out.println("High score");
+        System.out.println("High score\n");
     }
 
 }

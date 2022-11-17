@@ -6,7 +6,8 @@ public class Card implements Comparable<Card> {
     public String colour;
     private static final Random GENERATOR = new Random();
 
-    private static final String[] RANKS = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"};
+    private static final String[] RANKS = {"2", "3", "4", "5", "6", "7", "8", "9",
+                                            "10", "Jack", "Queen", "King", "Ace"};
 
     private static final String[] SUITS = {"Clubs", "Diamonds", "Hearts", "Spades"};
 
