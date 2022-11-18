@@ -1,7 +1,7 @@
 public class Deck {
 
     // Properties.
-    ArrayBag deck = new ArrayBag(52);
+    ArrayBag<Card> deck = new ArrayBag<>(52);
 
     // Methods.
     public Deck() {
