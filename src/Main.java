@@ -44,14 +44,24 @@ public class Main {
     public static void singlePlayer() {
 
         Scanner sc = new Scanner(System.in);
-        String input;
+
+        String numCards;
         String name;
 
+        Deck deck = new Deck();
+
         System.out.print("How many cards do you want to play with (5-10)? > ");
-        input = sc.nextLine();
+        numCards = sc.nextLine();
+        Hand hand = new Hand(Integer.parseInt(numCards));
 
         System.out.print("Enter Player 1 Name > ");
         name = sc.nextLine();
+
+        for (int i = 0; i < Integer.parseInt(numCards); i++) {
+            hand.addToHand(deck);
+        }
+
+        hand.displayHand(name);
 
     }
 

@@ -18,4 +18,18 @@ public class Hand {
         deck.deck.addNewEntry(card);
     }
 
+    public void displayHand(String name) {
+
+        String[] LETTERS = {"A","B","C","D","E","F","G","H","I","J"};
+
+        String a = "\n";
+        a += name;
+
+        for (int i = 0; i < hand.getCurrentSize(); i++) {
+            a += "\n" + LETTERS[i] + " : " + hand.returnElement(i) ;
+        }
+
+        System.out.println(a);
+    }
+
 }
