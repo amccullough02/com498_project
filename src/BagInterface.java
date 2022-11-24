@@ -6,6 +6,8 @@ public interface BagInterface<T> {
 
     public boolean addNewEntry(T newEntry);
 
+    public boolean setEntryAt(int index, T newEntry);
+
     public T remove();
 
     public boolean remove(T anEntry);

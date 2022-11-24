@@ -67,10 +67,28 @@ public final class ArrayBag<T> implements BagInterface<T> {
 
     }
 
+    public boolean setEntryAt(int index, T anEntry) {
+        checkIntialisation();
+
+        if (anEntry.equals(bag[index])) return false;
+        else {
+            bag[index] = anEntry;
+            return true;
+        }
+
+    }
+
     public T remove() {
 
         checkIntialisation();
         return removeElementAt(numberOfEntries - 1);
+
+    }
+
+    public T remove(int index) {
+
+        checkIntialisation();
+        return removeElementAt(index);
 
     }
 

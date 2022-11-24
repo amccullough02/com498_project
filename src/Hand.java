@@ -32,4 +32,39 @@ public class Hand {
         System.out.println(a);
     }
 
+    // TODO Make use of a more efficient sorting algorithm.
+    public void sortHand() {
+
+        int firstPos = 0, lastPos = hand.getCurrentSize() - 1;
+        int lastSwapPos;
+        Card temp;
+
+        while (firstPos < lastPos) {
+            lastSwapPos = firstPos;
+            for (int j = firstPos; j < lastPos; j++) {
+                if (hand.returnElement(j).getRankValue() > hand.returnElement(j+1).getRankValue()) {
+                    temp = hand.returnElement(j);
+                    hand.setEntryAt(j, hand.returnElement(j+1));
+                    hand.setEntryAt(j+1, temp);
+                    lastSwapPos = j;
+                }
+            }
+            lastPos = lastSwapPos;
+        }
+
+    }
+
+    // TODO - WORK FOR LATER
+    public void displayStreak() {
+
+        int streak = 0;
+
+        for (int i = 0; i < hand.getCurrentSize(); i++) {
+
+
+
+        }
+
+    }
+
 }

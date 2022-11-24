@@ -61,6 +61,7 @@ public class Main {
             hand.addToHand(deck);
         }
 
+        hand.sortHand();
         hand.displayHand(name);
 
     }
