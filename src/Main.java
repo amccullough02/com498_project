@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-// Test comment.
+// TODO - Add input validation across the program.
 
 public class Main {
 
@@ -43,6 +43,9 @@ public class Main {
 
     }
 
+    // SINGLE PLAYER MODE
+    // TODO - Convert into player class when the first four functional requirements are implemented.
+
     public static void singlePlayer() {
 
         Scanner sc = new Scanner(System.in);
@@ -65,6 +68,80 @@ public class Main {
 
         hand.sortHand();
         hand.displayHand(name);
+        spGameLoop(hand, name, deck);
+
+    }
+
+    public static void spGameLoop (Hand hand, String name, Deck deck) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int swaps = 5;
+        boolean exit = false;
+
+        while (swaps > 0 && !exit) {
+
+            String choice;
+            System.out.print("Choose card to change, or X to exit > ");
+            choice = sc.nextLine();
+
+            // TODO - Replace with something more suitable, such as a helper method for each case body when you
+            //  convert this into a player class.
+            switch (choice) {
+                case "A" -> {
+                    hand.removeFromHand(deck, hand.hand.returnElement(0));
+                    hand.addToHand(deck);
+                }
+                case "B" -> {
+                    hand.removeFromHand(deck, hand.hand.returnElement(1));
+                    hand.addToHand(deck);
+                }
+                case "C" -> {
+                    hand.removeFromHand(deck, hand.hand.returnElement(2));
+                    hand.addToHand(deck);
+                }
+                case "D" -> {
+                    hand.removeFromHand(deck, hand.hand.returnElement(3));
+                    hand.addToHand(deck);
+                }
+                case "E" -> {
+                    hand.removeFromHand(deck, hand.hand.returnElement(4));
+                    hand.addToHand(deck);
+                }
+                case "F" -> {
+                    hand.removeFromHand(deck, hand.hand.returnElement(5));
+                    hand.addToHand(deck);
+                }
+                case "G" -> {
+                    hand.removeFromHand(deck, hand.hand.returnElement(6));
+                    hand.addToHand(deck);
+                }
+                case "H" -> {
+                    hand.removeFromHand(deck, hand.hand.returnElement(7));
+                    hand.addToHand(deck);
+                }
+                case "I" -> {
+                    hand.removeFromHand(deck, hand.hand.returnElement(8));
+                    hand.addToHand(deck);
+                }
+                case "J" -> {
+                    hand.removeFromHand(deck, hand.hand.returnElement(9));
+                    hand.addToHand(deck);
+                }
+                case "X" -> exit = true;
+            }
+
+            hand.sortHand();
+            hand.displayHand(name);
+            swaps--;
+            if (swaps == 0) {
+                System.out.println("No more swaps remaining.");
+            }
+            else if (swaps > 1) {
+                System.out.println("You can swap cards " + swaps + " more times.");
+            }
+
+        }
 
     }
 

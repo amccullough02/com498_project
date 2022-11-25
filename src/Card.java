@@ -1,6 +1,7 @@
 public class Card implements Comparable<Card> {
 
-    public final int RANK, SUIT;
+    private final int RANK, SUIT;
+    private String colour;
 
     private static final String[] RANKS = {"2", "3", "4", "5", "6", "7", "8", "9",
                                             "10", "Jack", "Queen", "King", "Ace"};
@@ -11,6 +12,11 @@ public class Card implements Comparable<Card> {
 
         this.RANK = rank;
         this.SUIT = suit;
+
+        switch (SUITS[suit]) {
+            case "Diamonds", "Hearts" -> colour = "Red";
+            case "Spades", "Clubs" -> colour = "Black";
+        }
 
     }
 
@@ -28,6 +34,10 @@ public class Card implements Comparable<Card> {
 
     public int getSuitValue() {
         return SUIT;
+    }
+
+    public String getColour() {
+        return colour;
     }
 
     @Override
