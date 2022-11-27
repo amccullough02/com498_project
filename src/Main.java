@@ -76,7 +76,7 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        int swaps = 5;
+        int swaps = hand.getSize();
         boolean exit = false;
 
         while (swaps > 0 && !exit) {
@@ -89,56 +89,89 @@ public class Main {
             //  convert this into a player class.
             switch (choice) {
                 case "A" -> {
-                    hand.removeFromHand(deck, hand.hand.returnElement(0));
+                    hand.removeFromHand(deck, hand.returnCard(0));
                     hand.addToHand(deck);
+                    hand.sortHand();
+                    hand.displayHand(name);
+                    swaps--;
                 }
                 case "B" -> {
-                    hand.removeFromHand(deck, hand.hand.returnElement(1));
+                    hand.removeFromHand(deck, hand.returnCard(1));
                     hand.addToHand(deck);
+                    hand.sortHand();
+                    hand.displayHand(name);
+                    swaps--;
                 }
                 case "C" -> {
-                    hand.removeFromHand(deck, hand.hand.returnElement(2));
+                    hand.removeFromHand(deck, hand.returnCard(2));
                     hand.addToHand(deck);
+                    hand.sortHand();
+                    hand.displayHand(name);
+                    swaps--;
                 }
                 case "D" -> {
-                    hand.removeFromHand(deck, hand.hand.returnElement(3));
+                    hand.removeFromHand(deck, hand.returnCard(3));
                     hand.addToHand(deck);
+                    hand.sortHand();
+                    hand.displayHand(name);
+                    swaps--;
                 }
                 case "E" -> {
-                    hand.removeFromHand(deck, hand.hand.returnElement(4));
+                    hand.removeFromHand(deck, hand.returnCard(4));
                     hand.addToHand(deck);
+                    hand.sortHand();
+                    hand.displayHand(name);
+                    swaps--;
                 }
                 case "F" -> {
-                    hand.removeFromHand(deck, hand.hand.returnElement(5));
+                    hand.removeFromHand(deck, hand.returnCard(5));
                     hand.addToHand(deck);
+                    hand.sortHand();
+                    hand.displayHand(name);
+                    swaps--;
                 }
                 case "G" -> {
-                    hand.removeFromHand(deck, hand.hand.returnElement(6));
+                    hand.removeFromHand(deck, hand.returnCard(6));
                     hand.addToHand(deck);
+                    hand.sortHand();
+                    hand.displayHand(name);
+                    swaps--;
                 }
                 case "H" -> {
-                    hand.removeFromHand(deck, hand.hand.returnElement(7));
+                    hand.removeFromHand(deck, hand.returnCard(7));
                     hand.addToHand(deck);
+                    hand.sortHand();
+                    hand.displayHand(name);
+                    swaps--;
                 }
                 case "I" -> {
-                    hand.removeFromHand(deck, hand.hand.returnElement(8));
+                    hand.removeFromHand(deck, hand.returnCard(8));
                     hand.addToHand(deck);
+                    hand.sortHand();
+                    hand.displayHand(name);
+                    swaps--;
                 }
                 case "J" -> {
-                    hand.removeFromHand(deck, hand.hand.returnElement(9));
+                    hand.removeFromHand(deck, hand.returnCard(9));
                     hand.addToHand(deck);
+                    hand.sortHand();
+                    hand.displayHand(name);
+                    swaps--;
                 }
-                case "X" -> exit = true;
+                case "X" -> {
+                    exit = true;
+                    swaps = -1;
+                }
             }
 
-            hand.sortHand();
-            hand.displayHand(name);
-            swaps--;
             if (swaps == 0) {
                 System.out.println("No more swaps remaining.");
             }
-            else if (swaps > 1) {
+            else if (swaps >= 1) {
                 System.out.println("You can swap cards " + swaps + " more times.");
+            }
+            else {
+                System.out.println("Swapping cards stopped.");
             }
 
         }

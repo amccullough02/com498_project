@@ -1,12 +1,11 @@
-import java.util.Collections;
 import java.util.Random;
 
 public class Deck {
 
     // Properties.
-    ArrayBag<Card> deck = new ArrayBag<>(52);
+    private ArrayBag<Card> deck = new ArrayBag<>(52);
 
-    Random rand = new Random();
+    private Random rand = new Random();
 
     // Methods.
     public Deck() {
@@ -35,6 +34,15 @@ public class Deck {
 
         }
 
+    }
+
+    public Card removeCard() {
+        Card card = this.deck.remove();
+        return card;
+    }
+
+    public void addCard(Card card) {
+        this.deck.addNewEntry(card);
     }
 
 }

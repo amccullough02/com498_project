@@ -1,7 +1,7 @@
 public class Hand {
 
     // Properties.
-    ArrayBag<Card> hand;
+    private ArrayBag<Card> hand;
 
     // Methods.
     public Hand(int handSize) {
@@ -10,15 +10,25 @@ public class Hand {
 
     }
 
+    public int getSize() {
+        int size = this.hand.getCurrentSize();
+        return size;
+    }
+
+    public Card returnCard(int index) {
+        Card card = this.hand.returnElement(index);
+        return card;
+    }
+
     public void addToHand(Deck deck) {
         deck.shuffleDeck();
-        hand.addNewEntry(deck.deck.remove());
+        hand.addNewEntry(deck.removeCard());
 
     }
 
     public void removeFromHand(Deck deck, Card card) {
         hand.remove(card);
-        deck.deck.addNewEntry(card);
+        deck.addCard(card);
         deck.shuffleDeck();
     }
 
@@ -38,18 +48,21 @@ public class Hand {
     }
 
 
-    // TODO Implement checks for colour and suit bonus.
     private int calculateStreak() {
 
         int largestStreak = 0;
         int currentStreak = 0;
         int bonusPoints = 0;
         boolean streakOccurred = false;
+        boolean consistencySwitch = true;
+        String streakColour = "";
+        String streakSuit = "";
 
         for (int i = 0; i < hand.getCurrentSize() - 1; i++) {
 
             // Check if there is a basic streak first.
             if (hand.returnElement(i).getRankValue() - hand.returnElement(i + 1).getRankValue() == -1) {
+
                 currentStreak++;
                 streakOccurred = true;
 
@@ -57,25 +70,35 @@ public class Hand {
                     largestStreak = currentStreak;
                 }
 
-//                if (hand.returnElement(i).getColour().equals(hand.returnElement(i+1).getColour())) {
-//                    bonusPoints = 1;
-//                    if (hand.returnElement(i).getSuit().equals(hand.returnElement(i+1).getSuit())) {
-//                        bonusPoints = 2;
-//                    }
-//                }
+                if (consistencySwitch) {
 
+                    streakColour = hand.returnElement(i).getColour();
+                    streakSuit = hand.returnElement(i).getSuit();
+                    consistencySwitch = false;
+
+                }
+
+                if (streakColour.equals(hand.returnElement(i+1).getColour())) {
+                    bonusPoints = 1;
+                    if (streakSuit.equals(hand.returnElement(i+1).getSuit())) {
+                        bonusPoints = 2;
+                    }
+                }
+                else {
+                    bonusPoints = 0;
+                }
             }
 
             else if (hand.returnElement(i + 1).getRankValue() - hand.returnElement(i).getRankValue() != -1) {
-//                currentStreak += bonusPoints;
+                currentStreak += bonusPoints;
+                if (currentStreak > largestStreak) {
+                    largestStreak = currentStreak;
+                }
                 currentStreak = 0;
+                bonusPoints = 0;
+                consistencySwitch = true;
             }
         }
-
-//        currentStreak += bonusPoints;
-//        if (currentStreak > largestStreak) {
-//            largestStreak = currentStreak;
-//        }
 
         // Correcting the output value.
         if (streakOccurred) {
