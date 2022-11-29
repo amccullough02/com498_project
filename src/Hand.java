@@ -129,4 +129,28 @@ public class Hand {
 
         }
 
+        public void qsortHand(int first, int last) {
+
+            int pivot = hand.returnElement(last).getRankValue();
+            int indexFromLeft = first, indexFromRight = last;
+
+            while (indexFromLeft <= indexFromRight) {
+
+                while(hand.returnElement(indexFromLeft).getRankValue() < pivot) indexFromLeft++;
+                while(hand.returnElement(indexFromRight).getRankValue() > pivot) indexFromRight--;
+                if (indexFromLeft <= indexFromRight) swap(indexFromLeft++, indexFromRight--);
+
+            }
+
+            if (first < indexFromRight) qsortHand(first, indexFromRight);
+            if (indexFromLeft < last) qsortHand(indexFromLeft, last);
+
+        }
+
+        private void swap(int first, int second) {
+            Card temp = hand.returnElement(first);
+            hand.setEntryAt(first, hand.returnElement(second));
+            hand.setEntryAt(second, temp);
+        }
+
     }

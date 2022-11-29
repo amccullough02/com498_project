@@ -66,7 +66,7 @@ public class Main {
             hand.addToHand(deck);
         }
 
-        hand.sortHand();
+        hand.qsortHand(0, hand.getSize()-1);
         hand.displayHand(name);
         spGameLoop(hand, name, deck);
 
