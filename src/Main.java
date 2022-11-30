@@ -66,7 +66,7 @@ public class Main {
             hand.addToHand(deck);
         }
 
-        hand.qsortHand(0, hand.getSize()-1);
+        hand.sortHand(0, hand.getSize()-1);
         hand.displayHand(name);
         spGameLoop(hand, name, deck);
 
@@ -91,70 +91,70 @@ public class Main {
                 case "A" -> {
                     hand.removeFromHand(deck, hand.returnCard(0));
                     hand.addToHand(deck);
-                    hand.sortHand();
+                    hand.sortHand(0, hand.getSize()-1);
                     hand.displayHand(name);
                     swaps--;
                 }
                 case "B" -> {
                     hand.removeFromHand(deck, hand.returnCard(1));
                     hand.addToHand(deck);
-                    hand.sortHand();
+                    hand.sortHand(0, hand.getSize()-1);
                     hand.displayHand(name);
                     swaps--;
                 }
                 case "C" -> {
                     hand.removeFromHand(deck, hand.returnCard(2));
                     hand.addToHand(deck);
-                    hand.sortHand();
+                    hand.sortHand(0, hand.getSize()-1);
                     hand.displayHand(name);
                     swaps--;
                 }
                 case "D" -> {
                     hand.removeFromHand(deck, hand.returnCard(3));
                     hand.addToHand(deck);
-                    hand.sortHand();
+                    hand.sortHand(0, hand.getSize()-1);
                     hand.displayHand(name);
                     swaps--;
                 }
                 case "E" -> {
                     hand.removeFromHand(deck, hand.returnCard(4));
                     hand.addToHand(deck);
-                    hand.sortHand();
+                    hand.sortHand(0, hand.getSize()-1);
                     hand.displayHand(name);
                     swaps--;
                 }
                 case "F" -> {
                     hand.removeFromHand(deck, hand.returnCard(5));
                     hand.addToHand(deck);
-                    hand.sortHand();
+                    hand.sortHand(0, hand.getSize()-1);
                     hand.displayHand(name);
                     swaps--;
                 }
                 case "G" -> {
                     hand.removeFromHand(deck, hand.returnCard(6));
                     hand.addToHand(deck);
-                    hand.sortHand();
+                    hand.sortHand(0, hand.getSize()-1);
                     hand.displayHand(name);
                     swaps--;
                 }
                 case "H" -> {
                     hand.removeFromHand(deck, hand.returnCard(7));
                     hand.addToHand(deck);
-                    hand.sortHand();
+                    hand.sortHand(0, hand.getSize()-1);
                     hand.displayHand(name);
                     swaps--;
                 }
                 case "I" -> {
                     hand.removeFromHand(deck, hand.returnCard(8));
                     hand.addToHand(deck);
-                    hand.sortHand();
+                    hand.sortHand(0, hand.getSize()-1);
                     hand.displayHand(name);
                     swaps--;
                 }
                 case "J" -> {
                     hand.removeFromHand(deck, hand.returnCard(9));
                     hand.addToHand(deck);
-                    hand.sortHand();
+                    hand.sortHand(0, hand.getSize()-1);
                     hand.displayHand(name);
                     swaps--;
                 }

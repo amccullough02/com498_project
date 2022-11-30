@@ -107,29 +107,7 @@ public class Hand {
         return largestStreak;
     }
 
-        // TODO Replace with a quicksort.
-        public void sortHand () {
-
-            int firstPos = 0, lastPos = hand.getCurrentSize() - 1;
-            int lastSwapPos;
-            Card temp;
-
-            while (firstPos < lastPos) {
-                lastSwapPos = firstPos;
-                for (int j = firstPos; j < lastPos; j++) {
-                    if (hand.returnElement(j).getRankValue() > hand.returnElement(j + 1).getRankValue()) {
-                        temp = hand.returnElement(j);
-                        hand.setEntryAt(j, hand.returnElement(j + 1));
-                        hand.setEntryAt(j + 1, temp);
-                        lastSwapPos = j;
-                    }
-                }
-                lastPos = lastSwapPos;
-            }
-
-        }
-
-        public void qsortHand(int first, int last) {
+        public void sortHand(int first, int last) {
 
             int pivot = hand.returnElement(last).getRankValue();
             int indexFromLeft = first, indexFromRight = last;
@@ -142,8 +120,8 @@ public class Hand {
 
             }
 
-            if (first < indexFromRight) qsortHand(first, indexFromRight);
-            if (indexFromLeft < last) qsortHand(indexFromLeft, last);
+            if (first < indexFromRight) sortHand(first, indexFromRight);
+            if (indexFromLeft < last) sortHand(indexFromLeft, last);
 
         }
 
