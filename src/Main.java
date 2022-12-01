@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 // TODO - Add input validation across the program.
+// TODO - Link to main menu, instead of exciting when a process completes.
 
 public class Main {
 
@@ -44,7 +45,6 @@ public class Main {
     }
 
     // SINGLE PLAYER MODE
-    // TODO - Convert into player class when the first four functional requirements are implemented.
 
     public static void singlePlayer() {
 
@@ -57,129 +57,40 @@ public class Main {
 
         System.out.print("How many cards do you want to play with (5-10)? > ");
         numCards = sc.nextLine();
-        Hand hand = new Hand(Integer.parseInt(numCards));
+        int handSize = Integer.parseInt(numCards);
 
         System.out.print("Enter Player 1 Name > ");
         name = sc.nextLine();
 
-        for (int i = 0; i < Integer.parseInt(numCards); i++) {
-            hand.addToHand(deck);
-        }
-
-        hand.sortHand(0, hand.getSize()-1);
-        hand.displayHand(name);
-        spGameLoop(hand, name, deck);
-
-    }
-
-    public static void spGameLoop (Hand hand, String name, Deck deck) {
-
-        Scanner sc = new Scanner(System.in);
-
-        int swaps = hand.getSize();
-        boolean exit = false;
-
-        while (swaps > 0 && !exit) {
-
-            String choice;
-            System.out.print("Choose card to change, or X to exit > ");
-            choice = sc.nextLine();
-
-            // TODO - Replace with something more suitable, such as a helper method for each case body when you
-            //  convert this into a player class.
-            switch (choice) {
-                case "A" -> {
-                    hand.removeFromHand(deck, hand.returnCard(0));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize()-1);
-                    hand.displayHand(name);
-                    swaps--;
-                }
-                case "B" -> {
-                    hand.removeFromHand(deck, hand.returnCard(1));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize()-1);
-                    hand.displayHand(name);
-                    swaps--;
-                }
-                case "C" -> {
-                    hand.removeFromHand(deck, hand.returnCard(2));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize()-1);
-                    hand.displayHand(name);
-                    swaps--;
-                }
-                case "D" -> {
-                    hand.removeFromHand(deck, hand.returnCard(3));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize()-1);
-                    hand.displayHand(name);
-                    swaps--;
-                }
-                case "E" -> {
-                    hand.removeFromHand(deck, hand.returnCard(4));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize()-1);
-                    hand.displayHand(name);
-                    swaps--;
-                }
-                case "F" -> {
-                    hand.removeFromHand(deck, hand.returnCard(5));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize()-1);
-                    hand.displayHand(name);
-                    swaps--;
-                }
-                case "G" -> {
-                    hand.removeFromHand(deck, hand.returnCard(6));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize()-1);
-                    hand.displayHand(name);
-                    swaps--;
-                }
-                case "H" -> {
-                    hand.removeFromHand(deck, hand.returnCard(7));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize()-1);
-                    hand.displayHand(name);
-                    swaps--;
-                }
-                case "I" -> {
-                    hand.removeFromHand(deck, hand.returnCard(8));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize()-1);
-                    hand.displayHand(name);
-                    swaps--;
-                }
-                case "J" -> {
-                    hand.removeFromHand(deck, hand.returnCard(9));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize()-1);
-                    hand.displayHand(name);
-                    swaps--;
-                }
-                case "X" -> {
-                    exit = true;
-                    swaps = -1;
-                }
-            }
-
-            if (swaps == 0) {
-                System.out.println("No more swaps remaining.");
-            }
-            else if (swaps >= 1) {
-                System.out.println("You can swap cards " + swaps + " more times.");
-            }
-            else {
-                System.out.println("Swapping cards stopped.");
-            }
-
-        }
+        Player p1 = new Player(name, handSize, deck);
+        p1.sortHand();
+        p1.displayHand();
+        p1.spGameLoop();
 
     }
 
     public static void twoPlayer() {
-        System.out.println("Two player game\n");
+
+        Scanner sc = new Scanner(System.in);
+
+        String numCards;
+        String namep1;
+        String namep2;
+
+        Deck deck = new Deck();
+
+        System.out.print("How many cards do you want to play with (5-10)? > ");
+        numCards = sc.nextLine();
+        int handSize = Integer.parseInt(numCards);
+
+        System.out.print("Enter Player 1 Name > ");
+        namep1 = sc.nextLine();
+        System.out.print("Enter Player 2 Name > ");
+        namep2 = sc.nextLine();
+
+        Player p1 = new Player(namep1, handSize, deck);
+        Player p2 = new Player(namep2, handSize, deck);
+
     }
 
     public static void highScore() {

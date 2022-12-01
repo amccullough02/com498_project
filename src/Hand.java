@@ -47,6 +47,25 @@ public class Hand {
         System.out.println("Current streak: " + calculateStreak());
     }
 
+    public String returnHand(String name) {
+
+        String[] LETTERS = {"A","B","C","D","E","F","G","H","I","J"};
+
+        String handInfo = "\n";
+        handInfo += name;
+
+        for (int i = 0; i < hand.getCurrentSize(); i++) {
+            handInfo += "\n" + LETTERS[i] + " : " + hand.returnElement(i) ;
+        }
+
+        return handInfo;
+
+    }
+
+    public int getStreak() {
+        return this.calculateStreak();
+    }
+
 
     private int calculateStreak() {
 

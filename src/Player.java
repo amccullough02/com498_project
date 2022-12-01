@@ -3,9 +3,10 @@ import java.util.Scanner;
 public class Player {
 
     private Hand hand;
-    String name;
-    int handSize;
-    Deck deck;
+    private String name;
+    private int handSize;
+    private Deck deck;
+    private ArrayBag<String> replayBag = new ArrayBag<>(10);
 
     public Player(String name, int handSize, Deck deck) {
 
@@ -21,7 +22,54 @@ public class Player {
     }
 
     // SINGLE PLAYER
-    public void spGameLoop (Hand hand, String name, Deck deck) {
+
+    public void sortHand() {
+        this.hand.sortHand(0, this.handSize-1);
+    }
+
+    public void displayHand() {
+        this.hand.displayHand(this.name);
+    }
+
+    public void replay() {
+
+        Scanner sc = new Scanner(System.in);
+        String choice;
+        System.out.print("\nDo you want to view a replay (y/n) > ");
+        choice = sc.nextLine();
+
+        if (choice.equals("y")) {
+
+            int index = 0;
+
+            while ((index < this.replayBag.getCurrentSize()-1)) {
+
+                System.out.println(this.replayBag.returnElement(index));
+
+                System.out.print("\nView next part (y/n) > ");
+                String x = sc.nextLine();
+                if (x.equals("n")) {
+                    index = this.replayBag.getCurrentSize();
+                }
+                else if (x.equals("y")){
+                    index++;
+                }
+            }
+
+            System.out.println("Exiting replay.");
+
+        }
+
+        else if (choice.equals("n")) {
+            System.out.println("returning to main menu");
+        }
+
+    }
+
+    public void spGameLoop () {
+
+        // Empties replay history if another replay is called using the same player class.
+        this.replayBag.clear();
 
         Scanner sc = new Scanner(System.in);
 
@@ -30,89 +78,105 @@ public class Player {
 
         while (swaps > 0 && !exit) {
 
+            String replayElement = "";
+
             String choice;
             System.out.print("Choose card to change, or X to exit > ");
             choice = sc.nextLine();
 
             switch (choice) {
                 case "A" -> {
-                    hand.removeFromHand(deck, hand.returnCard(0));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize() - 1);
-                    hand.displayHand(name);
+                    String cardName = hand.returnCard(0).toString();
+                    replayElement += hand.returnHand(name);
+                    swapCard(0);
+                    replayElement += "\n\nSelection was " + cardName;
+                    this.replayBag.addNewEntry(replayElement);
                     swaps--;
                 }
                 case "B" -> {
-                    hand.removeFromHand(deck, hand.returnCard(1));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize() - 1);
-                    hand.displayHand(name);
+                    String cardName = hand.returnCard(1).toString();
+                    replayElement += hand.returnHand(name);
+                    swapCard(1);
+                    replayElement += "\n\nSelection was " + cardName;
+                    this.replayBag.addNewEntry(replayElement);
                     swaps--;
                 }
                 case "C" -> {
-                    hand.removeFromHand(deck, hand.returnCard(2));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize() - 1);
-                    hand.displayHand(name);
+                    String cardName = hand.returnCard(2).toString();
+                    replayElement += hand.returnHand(name);
+                    swapCard(2);
+                    replayElement += "\n\nSelection was " + cardName;
+                    this.replayBag.addNewEntry(replayElement);
                     swaps--;
                 }
                 case "D" -> {
-                    hand.removeFromHand(deck, hand.returnCard(3));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize() - 1);
-                    hand.displayHand(name);
+                    String cardName = hand.returnCard(3).toString();
+                    replayElement += hand.returnHand(name);
+                    swapCard(3);
+                    replayElement += "\n\nSelection was " + cardName;
+                    this.replayBag.addNewEntry(replayElement);
                     swaps--;
                 }
                 case "E" -> {
-                    hand.removeFromHand(deck, hand.returnCard(4));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize() - 1);
-                    hand.displayHand(name);
+                    String cardName = hand.returnCard(4).toString();
+                    replayElement += hand.returnHand(name);
+                    swapCard(4);
+                    replayElement += "\n\nSelection was " + cardName;
+                    this.replayBag.addNewEntry(replayElement);
                     swaps--;
                 }
                 case "F" -> {
-                    hand.removeFromHand(deck, hand.returnCard(5));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize() - 1);
-                    hand.displayHand(name);
+                    String cardName = hand.returnCard(5).toString();
+                    replayElement += hand.returnHand(name);
+                    swapCard(5);
+                    replayElement += "\n\nSelection was " + cardName;
+                    this.replayBag.addNewEntry(replayElement);
                     swaps--;
                 }
                 case "G" -> {
-                    hand.removeFromHand(deck, hand.returnCard(6));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize() - 1);
-                    hand.displayHand(name);
+                    String cardName = hand.returnCard(6).toString();
+                    replayElement += hand.returnHand(name);
+                    swapCard(6);
+                    replayElement += "\n\nSelection was " + cardName;
+                    this.replayBag.addNewEntry(replayElement);
                     swaps--;
                 }
                 case "H" -> {
-                    hand.removeFromHand(deck, hand.returnCard(7));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize() - 1);
-                    hand.displayHand(name);
+                    String cardName = hand.returnCard(7).toString();
+                    replayElement += hand.returnHand(name);
+                    swapCard(7);
+                    replayElement += "\n\nSelection was " + cardName;
+                    this.replayBag.addNewEntry(replayElement);
                     swaps--;
                 }
                 case "I" -> {
-                    hand.removeFromHand(deck, hand.returnCard(8));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize() - 1);
-                    hand.displayHand(name);
+                    String cardName = hand.returnCard(8).toString();
+                    replayElement += hand.returnHand(name);
+                    swapCard(8);
+                    replayElement += "\n\nSelection was " + cardName;
+                    this.replayBag.addNewEntry(replayElement);
                     swaps--;
                 }
                 case "J" -> {
-                    hand.removeFromHand(deck, hand.returnCard(9));
-                    hand.addToHand(deck);
-                    hand.sortHand(0, hand.getSize() - 1);
-                    hand.displayHand(name);
+                    String cardName = hand.returnCard(9).toString();
+                    replayElement += hand.returnHand(name);
+                    swapCard(9);
+                    replayElement += "\n\nSelection was " + cardName;
+                    this.replayBag.addNewEntry(replayElement);
                     swaps--;
                 }
                 case "X" -> {
                     exit = true;
                     swaps = -1;
+                    System.out.println("Final streak is: " + this.hand.getStreak());
+                    this.replay();
                 }
             }
 
             if (swaps == 0) {
                 System.out.println("No more swaps remaining.");
+                System.out.println("Final streak is: " + this.hand.getStreak());
+                this.replay();
             } else if (swaps >= 1) {
                 System.out.println("You can swap cards " + swaps + " more times.");
             } else {
@@ -123,28 +187,14 @@ public class Player {
 
     }
 
-    // TESTING
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        String numCards;
-        String name;
-
-        Deck deck = new Deck();
-
-        System.out.print("How many cards do you want to play with (5-10)? > ");
-        numCards = sc.nextLine();
-        int handSize = Integer.parseInt(numCards);
-
-        System.out.print("Enter Player 1 Name > ");
-        name = sc.nextLine();
-
-        Player p1 = new Player(name, handSize, deck);
-        p1.hand.sortHand(0, p1.handSize-1);
-        p1.hand.displayHand(p1.name);
-        p1.spGameLoop(p1.hand, p1.name, p1.deck);
-
+    public void swapCard(int index) {
+        hand.removeFromHand(deck, hand.returnCard(index));
+        hand.addToHand(deck);
+        hand.sortHand(0, hand.getSize() - 1);
+        hand.displayHand(name);
     }
+
+    // TESTING
 
     // MULTI PLAYER METHODS
 
