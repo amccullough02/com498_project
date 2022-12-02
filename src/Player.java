@@ -21,6 +21,19 @@ public class Player {
 
     }
 
+    // Clears hand and returns cards to deck.
+    public void reset() {
+        for (int i = 0; i < this.handSize; i++) {
+            this.hand.removeFromHand(this.deck);
+        }
+     }
+
+     public void newHand() {
+         for (int i = 0; i < handSize; i++) {
+             this.hand.addToHand(deck);
+         }
+     }
+
     // SINGLE PLAYER
 
     public void sortHand() {
@@ -29,6 +42,15 @@ public class Player {
 
     public void displayHand() {
         this.hand.displayHand(this.name);
+    }
+
+    public String displayMaxStreak() {
+        String ans = this.name + " : " + this.hand.getStreak();
+        return ans;
+    }
+
+    public int getMaxStreak() {
+        return this.hand.getStreak();
     }
 
     public void replay() {
@@ -61,15 +83,17 @@ public class Player {
         }
 
         else if (choice.equals("n")) {
-            System.out.println("returning to main menu");
+            Main.menu();
         }
 
     }
 
-    public void spGameLoop () {
+    public void spGameLoop (HighScore highScore) {
 
         // Empties replay history if another replay is called using the same player class.
         this.replayBag.clear();
+
+        Score score;
 
         Scanner sc = new Scanner(System.in);
 
@@ -169,6 +193,8 @@ public class Player {
                     exit = true;
                     swaps = -1;
                     System.out.println("Final streak is: " + this.hand.getStreak());
+                    score = new Score(this.name, this.hand.getStreak());
+                    highScore.addScore(score);
                     this.replay();
                 }
             }
@@ -176,6 +202,8 @@ public class Player {
             if (swaps == 0) {
                 System.out.println("No more swaps remaining.");
                 System.out.println("Final streak is: " + this.hand.getStreak());
+                score = new Score(this.name, this.hand.getStreak());
+                highScore.addScore(score);
                 this.replay();
             } else if (swaps >= 1) {
                 System.out.println("You can swap cards " + swaps + " more times.");
@@ -197,5 +225,90 @@ public class Player {
     // TESTING
 
     // MULTI PLAYER METHODS
+
+    public void mpGameLoop(HighScore highScore) {
+
+        this.sortHand();
+        this.displayHand();
+
+        Score score;
+
+        Scanner sc = new Scanner(System.in);
+
+        int swaps = hand.getSize();
+        boolean exit = false;
+
+        while (swaps > 0 && !exit) {
+
+            String replayElement = "";
+
+            String choice;
+            System.out.print("Choose card to change, or X to exit > ");
+            choice = sc.nextLine();
+
+            switch (choice) {
+                case "A" -> {
+                    swapCard(0);
+                    swaps--;
+                }
+                case "B" -> {
+                    swapCard(1);
+                    swaps--;
+                }
+                case "C" -> {
+                    swapCard(2);
+                    swaps--;
+                }
+                case "D" -> {
+                    swapCard(3);
+                    swaps--;
+                }
+                case "E" -> {
+                    swapCard(4);
+                    swaps--;
+                }
+                case "F" -> {
+                    swapCard(5);
+                    swaps--;
+                }
+                case "G" -> {
+                    swapCard(6);
+                    swaps--;
+                }
+                case "H" -> {
+                    swapCard(7);
+                    swaps--;
+                }
+                case "I" -> {
+                    swapCard(8);
+                    swaps--;
+                }
+                case "J" -> {
+                    swapCard(9);
+                    swaps--;
+                }
+                case "X" -> {
+                    exit = true;
+                    swaps = -1;
+                    System.out.println("Final streak is: " + this.hand.getStreak());
+                    score = new Score(this.name, this.hand.getStreak());
+                    highScore.addScore(score);
+                }
+            }
+
+            if (swaps == 0) {
+                System.out.println("No more swaps remaining.");
+                System.out.println("Final streak is: " + this.hand.getStreak());
+                score = new Score(this.name, this.hand.getStreak());
+                highScore.addScore(score);
+            } else if (swaps >= 1) {
+                System.out.println("You can swap cards " + swaps + " more times.");
+            } else {
+                System.out.println("Swapping cards stopped.");
+            }
+
+        }
+
+    }
 
 }

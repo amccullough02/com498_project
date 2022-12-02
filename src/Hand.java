@@ -32,6 +32,11 @@ public class Hand {
         deck.shuffleDeck();
     }
 
+    public void removeFromHand(Deck deck) {
+        deck.addCard(hand.remove());
+        deck.shuffleDeck();
+    }
+
     public void displayHand(String name) {
 
         String[] LETTERS = {"A","B","C","D","E","F","G","H","I","J"};
@@ -66,7 +71,7 @@ public class Hand {
         return this.calculateStreak();
     }
 
-
+    // TODO Streak calculator is still broken somewhat, do some rigorous testing.
     private int calculateStreak() {
 
         int largestStreak = 0;

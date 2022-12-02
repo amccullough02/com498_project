@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class Main {
 
+    public static HighScore highScoreTable = new HighScore();
+
     public static void main(String[] args) {
         menu();
     }
@@ -65,7 +67,9 @@ public class Main {
         Player p1 = new Player(name, handSize, deck);
         p1.sortHand();
         p1.displayHand();
-        p1.spGameLoop();
+        p1.spGameLoop(highScoreTable);
+        p1.reset();
+        menu();
 
     }
 
@@ -76,6 +80,8 @@ public class Main {
         String numCards;
         String namep1;
         String namep2;
+        int p1MatchScore = 0;
+        int p2MatchScore = 0;
 
         Deck deck = new Deck();
 
@@ -91,10 +97,56 @@ public class Main {
         Player p1 = new Player(namep1, handSize, deck);
         Player p2 = new Player(namep2, handSize, deck);
 
+        System.out.println("\n*** Round 1/3 ***");
+        p1.mpGameLoop(highScoreTable);
+        p2.mpGameLoop(highScoreTable);
+        System.out.println("\n*** End of Round 1 ***");
+        System.out.println(p1.displayMaxStreak());
+        System.out.println(p2.displayMaxStreak());
+        p1MatchScore += p1.getMaxStreak();
+        p2MatchScore += p2.getMaxStreak();
+        System.out.println("\nTotal Score\n" + namep1 + " : " + p1MatchScore + "\n" + namep2 + " : " + p2MatchScore);
+
+        p1.reset();
+        p2.reset();
+        p1.newHand();
+        p2.newHand();
+
+        System.out.println("\n*** Round 2/3 ***");
+        p1.mpGameLoop(highScoreTable);
+        p2.mpGameLoop(highScoreTable);
+        System.out.println("\n*** End of Round 2 ***");
+        System.out.println(p1.displayMaxStreak());
+        System.out.println(p2.displayMaxStreak());
+        p1MatchScore += p1.getMaxStreak();
+        p2MatchScore += p2.getMaxStreak();
+        System.out.println("\nTotal Score\n" + namep1 + " : " + p1MatchScore + "\n" + namep2 + " : " + p2MatchScore);
+
+        p1.reset();
+        p2.reset();
+        p1.newHand();
+        p2.newHand();
+
+        System.out.println("\n*** Round 3/3 ***");
+        p1.mpGameLoop(highScoreTable);
+        p2.mpGameLoop(highScoreTable);
+        System.out.println("\n*** End of Round 3 ***");
+        System.out.println(p1.displayMaxStreak());
+        System.out.println(p2.displayMaxStreak());
+        p1MatchScore += p1.getMaxStreak();
+        p2MatchScore += p2.getMaxStreak();
+        System.out.println("\nTotal Score\n" + namep1 + " : " + p1MatchScore + "\n" + namep2 + " : " + p2MatchScore);
+
+        p1.reset();
+        p2.reset();
+
+        menu();
+
     }
 
     public static void highScore() {
-        System.out.println("High score\n");
+        System.out.print(highScoreTable.toString());
+        menu();
     }
 
 }
