@@ -26,22 +26,18 @@ public class Main {
         System.out.print("Input selection > ");
         input = sc.nextLine();
 
-        switch(input) {
-            case "1":
-                singlePlayer();
-                break;
-            case "2":
-                twoPlayer();
-                break;
-            case "3":
-                highScore();
-                break;
-            case "4":
+        switch (input) {
+            case "1" -> singlePlayer();
+            case "2" -> twoPlayer();
+            case "3" -> highScore();
+            case "4" -> {
                 System.out.println("Terminating program");
                 System.exit(0);
-                break;
-            default:
-                break;
+            }
+            default -> {
+                System.out.println("Invalid input - please enter a number from 1 - 4.");
+                menu();
+            }
         }
 
     }
@@ -59,7 +55,20 @@ public class Main {
 
         System.out.print("How many cards do you want to play with (5-10)? > ");
         numCards = sc.nextLine();
+
+        try {
+            int x = Integer.parseInt(numCards);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid hand-size presented - returning to the main menu.");
+            menu();
+        }
+
         int handSize = Integer.parseInt(numCards);
+
+        if (handSize > 10 || handSize < 5) {
+            System.out.println("Invalid hand-size presented - returning to the main menu.");
+            menu();
+        }
 
         System.out.print("Enter Player 1 Name > ");
         name = sc.nextLine();
@@ -87,7 +96,20 @@ public class Main {
 
         System.out.print("How many cards do you want to play with (5-10)? > ");
         numCards = sc.nextLine();
+
+        try {
+            int x = Integer.parseInt(numCards);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid hand-size presented - returning to the main menu.");
+            menu();
+        }
+
         int handSize = Integer.parseInt(numCards);
+
+        if (handSize > 10 || handSize < 5) {
+            System.out.println("Invalid hand-size presented - returning to the main menu.");
+            menu();
+        }
 
         System.out.print("Enter Player 1 Name > ");
         namep1 = sc.nextLine();
