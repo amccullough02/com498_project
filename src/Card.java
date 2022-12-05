@@ -32,10 +32,6 @@ public class Card implements Comparable<Card> {
         return RANK;
     }
 
-    public int getSuitValue() {
-        return SUIT;
-    }
-
     public String getColour() {
         return colour;
     }

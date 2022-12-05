@@ -243,8 +243,6 @@ public class Player {
         hand.displayHand(name);
     }
 
-    // TESTING
-
     // MULTI PLAYER METHODS
 
     public void mpGameLoop(HighScore highScore) {
@@ -267,54 +265,64 @@ public class Player {
             System.out.print("Choose card to change, or X to exit > ");
             choice = sc.nextLine();
 
-            switch (choice) {
-                case "A" -> {
-                    swapCard(0);
-                    swaps--;
+            try {
+                switch (choice) {
+                    case "A" -> {
+                        swapCard(0);
+                        swaps--;
+                    }
+                    case "B" -> {
+                        swapCard(1);
+                        swaps--;
+                    }
+                    case "C" -> {
+                        swapCard(2);
+                        swaps--;
+                    }
+                    case "D" -> {
+                        swapCard(3);
+                        swaps--;
+                    }
+                    case "E" -> {
+                        swapCard(4);
+                        swaps--;
+                    }
+                    case "F" -> {
+                        swapCard(5);
+                        swaps--;
+                    }
+                    case "G" -> {
+                        swapCard(6);
+                        swaps--;
+                    }
+                    case "H" -> {
+                        swapCard(7);
+                        swaps--;
+                    }
+                    case "I" -> {
+                        swapCard(8);
+                        swaps--;
+                    }
+                    case "J" -> {
+                        swapCard(9);
+                        swaps--;
+                    }
+                    case "X" -> {
+                        exit = true;
+                        swaps = -1;
+                        System.out.println("Final streak is: " + this.hand.getStreak());
+                        score = new Score(this.name, this.hand.getStreak());
+                        highScore.addScore(score);
+                    }
+                    default -> {
+                        System.out.println("Invalid selection, please try again.\n");
+                        this.displayHand();
+                    }
                 }
-                case "B" -> {
-                    swapCard(1);
-                    swaps--;
-                }
-                case "C" -> {
-                    swapCard(2);
-                    swaps--;
-                }
-                case "D" -> {
-                    swapCard(3);
-                    swaps--;
-                }
-                case "E" -> {
-                    swapCard(4);
-                    swaps--;
-                }
-                case "F" -> {
-                    swapCard(5);
-                    swaps--;
-                }
-                case "G" -> {
-                    swapCard(6);
-                    swaps--;
-                }
-                case "H" -> {
-                    swapCard(7);
-                    swaps--;
-                }
-                case "I" -> {
-                    swapCard(8);
-                    swaps--;
-                }
-                case "J" -> {
-                    swapCard(9);
-                    swaps--;
-                }
-                case "X" -> {
-                    exit = true;
-                    swaps = -1;
-                    System.out.println("Final streak is: " + this.hand.getStreak());
-                    score = new Score(this.name, this.hand.getStreak());
-                    highScore.addScore(score);
-                }
+            }
+            catch (IndexOutOfBoundsException e) {
+                System.out.println("\nWARNING: The card you have nominated doesn't exist,\nchoose a valid selection.");
+                this.displayHand();
             }
 
             if (swaps == 0) {

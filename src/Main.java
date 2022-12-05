@@ -1,8 +1,5 @@
 import java.util.Scanner;
 
-// TODO - Add input validation across the program.
-// TODO - Link to main menu, instead of exciting when a process completes.
-
 public class Main {
 
     public static HighScore highScoreTable = new HighScore();
@@ -11,6 +8,7 @@ public class Main {
         menu();
     }
 
+    // MAIN MENU
     public static void menu() {
 
         Scanner sc = new Scanner(System.in);
@@ -82,6 +80,7 @@ public class Main {
 
     }
 
+    // TWO PLAYER MODE
     public static void twoPlayer() {
 
         Scanner sc = new Scanner(System.in);
@@ -119,6 +118,7 @@ public class Main {
         Player p1 = new Player(namep1, handSize, deck);
         Player p2 = new Player(namep2, handSize, deck);
 
+        // ROUND ONE
         System.out.println("\n*** Round 1/3 ***");
         p1.mpGameLoop(highScoreTable);
         p2.mpGameLoop(highScoreTable);
@@ -134,6 +134,7 @@ public class Main {
         p1.newHand();
         p2.newHand();
 
+        // ROUND TWO
         System.out.println("\n*** Round 2/3 ***");
         p1.mpGameLoop(highScoreTable);
         p2.mpGameLoop(highScoreTable);
@@ -149,6 +150,7 @@ public class Main {
         p1.newHand();
         p2.newHand();
 
+        // ROUND THREE
         System.out.println("\n*** Round 3/3 ***");
         p1.mpGameLoop(highScoreTable);
         p2.mpGameLoop(highScoreTable);
@@ -166,6 +168,7 @@ public class Main {
 
     }
 
+    // HIGH SCORE TABLE
     public static void highScore() {
         System.out.print(highScoreTable.toString());
         menu();

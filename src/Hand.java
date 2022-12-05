@@ -26,11 +26,6 @@ public class Hand {
 
     }
 
-    // Only used for testing.
-    public void addCard(Card card) {
-        this.hand.addNewEntry(card);
-    }
-
     public void removeFromHand(Deck deck, Card card) {
         hand.remove(card);
         deck.addCard(card);
@@ -75,8 +70,6 @@ public class Hand {
     public int getStreak() {
         return this.calculateStreak();
     }
-
-    // TODO Streak calculator is still broken somewhat, do some rigorous testing.
     private int calculateStreak() {
 
         boolean checkLock = true;
@@ -90,7 +83,6 @@ public class Hand {
 
         // LOOP THROUGH HAND
         for (int i = 0; i < hand.getCurrentSize()-1; i++) {
-//            System.out.println("DEBUG | " + hand.returnElement(i).toString() + " | Temp streak: " + currentStreak + " | Best streak: " + bestStreak + " | CC: " + isColourConsistent + " | SC: " + isSuitConsistent + " | " + streakColour + " | " + streakSuit);
             if (hand.returnElement(i).getRankValue() - hand.returnElement(i+1).getRankValue() == -1) {
                 currentStreak++;
                 streakHappened = true;
@@ -117,7 +109,6 @@ public class Hand {
                     if (isColourConsistent == 0 && currentStreak != 0) currentStreak+= 1;
                     if (isSuitConsistent == 0 && currentStreak != 0) currentStreak+= 1;
                     if (currentStreak > bestStreak) bestStreak = currentStreak;
-//                    System.out.println("DEBUG | " + hand.returnElement(i+1).toString() + " | Temp streak: " + currentStreak + " | Best streak: " + bestStreak + " | CC: " + isColourConsistent + " | SC: " + isSuitConsistent + " | " + streakColour + " | " + streakSuit);
                 }
             }
             else {
