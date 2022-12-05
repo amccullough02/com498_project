@@ -26,6 +26,11 @@ public class Hand {
 
     }
 
+    // Only used for testing.
+    public void addCard(Card card) {
+        this.hand.addNewEntry(card);
+    }
+
     public void removeFromHand(Deck deck, Card card) {
         hand.remove(card);
         deck.addCard(card);
@@ -74,61 +79,59 @@ public class Hand {
     // TODO Streak calculator is still broken somewhat, do some rigorous testing.
     private int calculateStreak() {
 
-        int largestStreak = 0;
+        boolean checkLock = true;
+        int isColourConsistent = 0;
+        int isSuitConsistent = 0;
+        boolean streakHappened = false;
         int currentStreak = 0;
-        int bonusPoints = 0;
-        boolean streakOccurred = false;
-        boolean consistencySwitch = true;
+        int bestStreak = 0;
         String streakColour = "";
         String streakSuit = "";
 
-        for (int i = 0; i < hand.getCurrentSize() - 1; i++) {
-
-            // Check if there is a basic streak first.
-            if (hand.returnElement(i).getRankValue() - hand.returnElement(i + 1).getRankValue() == -1) {
-
+        // LOOP THROUGH HAND
+        for (int i = 0; i < hand.getCurrentSize()-1; i++) {
+//            System.out.println("DEBUG | " + hand.returnElement(i).toString() + " | Temp streak: " + currentStreak + " | Best streak: " + bestStreak + " | CC: " + isColourConsistent + " | SC: " + isSuitConsistent + " | " + streakColour + " | " + streakSuit);
+            if (hand.returnElement(i).getRankValue() - hand.returnElement(i+1).getRankValue() == -1) {
                 currentStreak++;
-                streakOccurred = true;
-
-                if (currentStreak > largestStreak) {
-                    largestStreak = currentStreak;
-                }
-
-                if (consistencySwitch) {
-
+                streakHappened = true;
+                if (checkLock) {
                     streakColour = hand.returnElement(i).getColour();
                     streakSuit = hand.returnElement(i).getSuit();
-                    consistencySwitch = false;
-
+                    checkLock = false;
                 }
-
                 if (streakColour.equals(hand.returnElement(i+1).getColour())) {
-                    bonusPoints = 1;
+                    isColourConsistent += 0;
                     if (streakSuit.equals(hand.returnElement(i+1).getSuit())) {
-                        bonusPoints = 2;
+                        isSuitConsistent += 0;
+                    }
+                    else {
+                        isSuitConsistent++;
                     }
                 }
                 else {
-                    bonusPoints = 0;
+                    isSuitConsistent++;
+                    isColourConsistent++;
+                }
+                // FOR FINAL LOOP ONLY
+                if (i+1 >= hand.getCurrentSize()-1) {
+                    if (isColourConsistent == 0 && currentStreak != 0) currentStreak+= 1;
+                    if (isSuitConsistent == 0 && currentStreak != 0) currentStreak+= 1;
+                    if (currentStreak > bestStreak) bestStreak = currentStreak;
+//                    System.out.println("DEBUG | " + hand.returnElement(i+1).toString() + " | Temp streak: " + currentStreak + " | Best streak: " + bestStreak + " | CC: " + isColourConsistent + " | SC: " + isSuitConsistent + " | " + streakColour + " | " + streakSuit);
                 }
             }
-
-            else if (hand.returnElement(i + 1).getRankValue() - hand.returnElement(i).getRankValue() != -1) {
-                currentStreak += bonusPoints;
-                if (currentStreak > largestStreak) {
-                    largestStreak = currentStreak;
-                }
+            else {
+                if (isColourConsistent == 0 && currentStreak != 0) currentStreak += 1;
+                if (isSuitConsistent == 0 && currentStreak != 0) currentStreak += 1;
+                if (currentStreak > bestStreak) bestStreak = currentStreak;
                 currentStreak = 0;
-                bonusPoints = 0;
-                consistencySwitch = true;
+                isSuitConsistent = 0;
+                isColourConsistent = 0;
+                checkLock = true;
             }
         }
-
-        // Correcting the output value.
-        if (streakOccurred) {
-            largestStreak++;
-        }
-        return largestStreak;
+        if (streakHappened) bestStreak++;
+        return bestStreak;
     }
 
         public void sortHand(int first, int last) {

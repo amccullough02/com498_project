@@ -11,10 +11,10 @@ public class HighScore {
     @Override
     public String toString() {
 
-        // SORT HERE
-        this.sortScores(0, scores.getCurrentSize()-1);
-
         if (scores.getCurrentSize() > 0) {
+
+            // SORT HERE
+            this.sortScores(0, scores.getCurrentSize()-1);
 
             StringBuilder table = new StringBuilder();
             table.append("High Score Table");
@@ -31,7 +31,7 @@ public class HighScore {
         }
 
         else if (scores.getCurrentSize() == 0){
-            String error = "Table contains no entries - try again later.";
+            String error = "Table contains no entries - try again later.\n";
             return error;
         }
         else {

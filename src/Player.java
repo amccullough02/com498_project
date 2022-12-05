@@ -76,6 +76,10 @@ public class Player {
                 else if (x.equals("y")){
                     index++;
                 }
+                else {
+                    System.out.println("Invalid input - exiting replay.\n");
+                    Main.menu();
+                }
             }
 
             System.out.println("Exiting replay.");
@@ -84,6 +88,11 @@ public class Player {
 
         else if (choice.equals("n")) {
             Main.menu();
+        }
+
+        else {
+            System.out.println("Invalid input - please select a valid option.\n");
+            this.replay();
         }
 
     }
