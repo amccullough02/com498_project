@@ -64,7 +64,7 @@ public class Player {
 
             int index = 0;
 
-            while ((index < this.replayBag.getCurrentSize()-1)) {
+            while ((index < this.replayBag.getCurrentSize())) {
 
                 System.out.println(this.replayBag.returnElement(index));
 
