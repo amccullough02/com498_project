@@ -8,34 +8,29 @@ public class HighScore {
         scores.addNewEntry(score);
     }
 
-    @Override
-    public String toString() {
+    public void viewScore() {
 
         if (scores.getCurrentSize() > 0) {
 
             // SORT HERE
             this.sortScores(0, scores.getCurrentSize()-1);
 
-            StringBuilder table = new StringBuilder();
-            table.append("High Score Table");
-            table.append("\n---------------------");
+            String table = "";
+            System.out.println("High Score Table\n---------------------");
 
             for (int i = 0; i < scores.getCurrentSize() && i < 5; i++) {
-                table.append("\n").append(scores.returnElement(i).toString());
+                scores.returnElement(i).printScore();
             }
 
-            table.append("\n\n");
-
-            return table.toString();
+            System.out.println("\n");
 
         }
 
         else if (scores.getCurrentSize() == 0){
-            String error = "Table contains no entries - try again later.\n";
-            return error;
+            System.out.println("Table contains no entries - try again later.\n");
         }
         else {
-            return "Error.";
+            System.out.println("Error.");
         }
     }
 

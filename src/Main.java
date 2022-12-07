@@ -170,7 +170,7 @@ public class Main {
 
     // HIGH SCORE TABLE
     public static void highScore() {
-        System.out.print(highScoreTable.toString());
+        highScoreTable.viewScore();
         menu();
     }
 

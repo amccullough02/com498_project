@@ -8,11 +8,8 @@ public class Score {
         this.score = score;
     }
 
-    @Override
-    public String toString() {
-        String result = "";
-        result += this.name += "\t:\t" + this.score;
-        return result;
+    public void printScore() {
+        System.out.println(this.name + ": " + this.score);
     }
 
     public String getName() {
