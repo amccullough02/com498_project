@@ -1,0 +1,1 @@
+A Java application that generates a hand of playing cards, if a set of ascending cards are detected a streak will occur. You then have the ability to change the cards in your hand to obtain a longer streak. This application was developed during my time at University, so do bear that in mind when looking at the code quality and especially the commit messages.
